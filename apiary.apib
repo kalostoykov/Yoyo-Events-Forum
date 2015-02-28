@@ -1,0 +1,50 @@
+FORMAT: 1A
+
+# Yoyo-Events-Forum-Api
+Api for project Yoyo Events Forum: https://github.com/zombidust/Yoyo-Events-Forum
+
+# Group Forum Posts
+Posts in this forum.
+
+## Posts [/posts]
+### List all Posts [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "author": "Kaloyan", "type": "meeting", "title": "Let's have a meeting", "place": "Sofia", "date": "2015-03-15", "time": "15:30", "description": "Come to Borisova gradina and let's have some fun."
+        }, {
+          "id": 4, "author": "Maria", "type": "tournament", "title": "Let's have a meeting", "place": "Sofia", "date": "2015-03-15", "time": "15:30", "description": "Come to Borisova gradina and let's have some fun."
+        }, {
+          "id": 5, "author": "Kaloyan", "type": "meeting", "title": "Let's have a meeting", "place": "Sofia", "date": "2015-03-15", "time": "15:30", "description": "Come to Borisova gradina and let's have some fun."
+        }, {
+          "id": 2, "author": "Georgi", "type": "tournament", "title": "Come and face me in my tournament", "place": "Sofia", "date": "2015-05-06", "time": "11:00", "description": "Come to Party Centre 4th kilometer and decide ho will get the gold medal." 
+        }]
+
+### Create a Post [POST]
++ Request (application/json)
+
+        { "author": "Kaloyan", "type": "meeting", "title": "Let's have a meeting", "place": "Sofia","date": "2015-03-15", "time": "15:30", "description": "Come to Borisova gradina and let's have some fun." }
+
++ Response 201 (application/json)
+
+        { "id": 3, "author": "Kaloyan", "type": "meeting", "title": "Let's have a meeting", "place": "Sofia","date": "2015-03-15", "time": "15:30", "description": "Come to Borisova gradina and let's have some fun." }
+
+## Post [/posts/{type}]
+A single Post object with all its details
+
++ Parameters
+    + type (required, String, `meeting`) ... String `type` of the Post to perform action with. Has example value.
+
+### Retrieve a Post [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            { "id": 1, "author": "Kaloyan", "type": "meeting", "title": "Let's have a meeting", "place": "Sofia","date": "2015-03-15", "time": "15:30", "description": "Come to Borisova gradina and let's have some fun." }
+
+### Remove a Post [DELETE]
++ Response 204
