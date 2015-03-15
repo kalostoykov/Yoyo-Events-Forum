@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
+
+<title>Yoyo-Events-Forum</title>
+
+<!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap theme -->
+<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+</head>
+
+<body role="document">
+
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Yoyo Events Forum</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+
+	<div class="container theme-showcase" role="main">
+		<div class="row">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Registation</h3>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label" >Username</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="username"
+							placeholder="Username">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="email"
+							placeholder="Email">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="password"
+							placeholder="Password">
+					</div>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="optradio" id="radioButtonMale" value="male">Male</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="optradio"id="radioButtonFemale" value="female">Female</label>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default" id="createAccButton">Sign in</button>
+					</div>
+				</div>
+			</form>
+				</div>
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Create a Post</h3>
+				</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">Title</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="postTitle"
+							placeholder="Title">
+					</div>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="optradio" id="radioTypeMeeting" value="meeting">Meeting</label>
+				</div>
+				<div class="radio">
+					<label><input type="radio" name="optradio" id="radioTypeTournament" value="tournament">Tournament</label>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">City</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="postCity"
+							placeholder="e.g. Sofia, Varna">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">Date</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="postDate"
+							placeholder="e.g. 2015-03-15">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">Date</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="postTime"
+							placeholder="e.g. 15:45">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="postDescription"
+							placeholder="Enter your description here">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-default" id="createPostButton">Create</button>
+					</div>
+				</div>
+			</form>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">List all meetings</h3>
+				</div>
+				<div class="panel-body">
+					<ul id="meetingsList">
+					
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">List all Tournaments</h3>
+				</div>
+				<div class="panel-body">
+					<ul id="tournamentsList">
+					
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="scripts/yoyo-events-forum.js"></script>
+</body>
+</html>
