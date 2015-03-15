@@ -48,3 +48,49 @@ A single Post object with all its details
 
 ### Remove a Post [DELETE]
 + Response 204
+
+# Group Forum Accounts
+Accounts in this forum.
+
+## Accounts [/accounts]
+### List all Accounts [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "username": "Kaloyan", "password": "password", "email": "hello@world.com", "sex": "male"
+        }, {
+          "id": 4, "username": "Maria", "password": "password", "email": "hello@world.com", "sex": "female"
+        }, {
+          "id": 5, "username": "Kaloyan", "password": "password", "email": "hello@world.com", "sex": "male"
+        }, {
+          "id": 2, "username": "Georgi", "password": "password", "email": "hello@world.com", "sex": "male"
+        }]
+
+### Create an Account [POST]
++ Request (application/json)
+
+        { "username": "Kaloyan", "password": "password", "email": "hello@world.com", "sex": "male" }
+
++ Response 201 (application/json)
+
+        { "id": 1, "username": "Kaloyan", "password": "password", "email": "hello@world.com", "sex": "male" }
+
+## Account [/accounts/{id}]
+A single Account object with all its details
+
++ Parameters
+    + id (required, String, `meeting`) ... Integer `type` of the Accounts to perform action with. Has example value.
+
+### Retrieve a Account [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            { "id": 1, "username": "Kaloyan", "password": "password", "email": "hello@world.com", "sex": "male" }
+
+### Remove a Post [DELETE]
++ Response 204
