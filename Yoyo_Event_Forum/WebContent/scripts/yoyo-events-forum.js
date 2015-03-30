@@ -1,7 +1,7 @@
 (function() {
 	"use strict"
-	var host = "http://private-d5490-yoyoeventsforumapi.apiary-mock.com/";
-
+//	var host = "http://private-d5490-yoyoeventsforumapi.apiary-mock.com/";
+	var host = "http://localhost:8080/Yoyo_Event_Forum/api/";
 	// Create Account vars
 	var userName = $("#username");
 	var email = $("#email");
@@ -27,7 +27,8 @@
 	
 	displayPost();
 	// Create Account
-	createAccButton.click(function() {
+	createAccButton.click(function(event) {
+		event.preventDefault();
 		if ((userName.val() !== "") && (email.val() !== "")
 				&& (password.val() !== "")) {
 			if (radioButtonMale.is(":checked")) {
@@ -56,16 +57,18 @@
 	});
 	
 	// Create Post
-	createPostButton.click(function() {
+	createPostButton.click(function(event) {
+		event.preventDefault();
 		if ((title.val() !== "") && (city.val() !== "")
 				&& (date.val() !== "") && (time.val() !== "") && (description.val() !== "")) {
-			if (radioButtonMeeting.is(":checked")) {
-				// Meeting radio button is checked
-				postType = radioButtonMeeting.val();
-			} else if (radioButtonTournament.is(":checked")) {
-				// Tournament radio button is checked
-				postType = radioButtonTournament.val();
-			}
+//			if (radioButtonMeeting.is(":checked")) {
+//				// Meeting radio button is checked
+//				postType = radioButtonMeeting.val();
+//			} else if (radioButtonTournament.is(":checked")) {
+//				// Tournament radio button is checked
+//				postType = radioButtonTournament.val();
+//			}
+			postType = radioButtonMeeting.val();
 		}
 		
 		$.ajax({
@@ -73,7 +76,7 @@
 			contentType : 'application/json',
 			url : host + 'posts',
 			data : {
-				"author": "Kaloyan",
+//				"author": "Kaloyan",
 				"type": postType,
 				"title": title.val(),
 				"place": city.val(),
