@@ -1,9 +1,13 @@
 package com.yoyoeventforum.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -44,7 +48,17 @@ public class Post {
 	
 	@Column(nullable=false, length=500)
 	private String description;
+	
+	@ManyToMany
+	private Set<User> goingByUsers = new HashSet<User>();
 
+	@XmlTransient
+	public Set<User> getGoingByUsers() {
+		return goingByUsers;
+	}
+	public void setLikedByUsers(Set<User> goingByUsers) {
+		this.goingByUsers = goingByUsers;
+	}
 	public long getId() {
 		return id;
 	}

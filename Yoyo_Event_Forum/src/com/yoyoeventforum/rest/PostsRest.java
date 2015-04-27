@@ -1,6 +1,7 @@
 package com.yoyoeventforum.rest;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -44,6 +45,15 @@ public class PostsRest {
 	public Post getPost(@PathParam("postId") long postId) {
 		return postsService.getPost(postId);
 	}
+	
+	@GET
+	@Path("/{postId}/goingbyusers")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public List<User> getUserByGoingPost(@PathParam("postId") long postId) {
+		final Post goingPost = postsService.getPost(postId);
+		return usersService.getUsersByGoingPost(goingPost);
+	}
+	
 	@POST
 	@Path("/")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -53,6 +63,15 @@ public class PostsRest {
 		post.setAuthor(author);
 		return postsService.createPost(post);
 	}
+	
+	@POST
+	@Path("/{postId}/goingbyusers")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public Set<User> goingPost(@PathParam("postId")long postId) {
+		final User goingByUser = usersService.getUserByUsername(defaultAuthorUsername);
+		return postsService.goingPost(postId, goingByUser);
+	}
+	
 	@PUT
 	@Path("/{postId}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

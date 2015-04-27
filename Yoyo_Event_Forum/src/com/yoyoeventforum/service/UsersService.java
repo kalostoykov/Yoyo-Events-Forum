@@ -1,10 +1,13 @@
 package com.yoyoeventforum.service;
 
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
+import com.yoyoeventforum.model.Post;
 import com.yoyoeventforum.model.User;
 
 public class UsersService {
@@ -52,5 +55,17 @@ public class UsersService {
 			}
 			em.close();
 		}
+	}
+	
+	public List<User> getUsersByGoingPost(Post goingPost) {
+		final EntityManager em = emf.createEntityManager();
+			try {
+				return em
+					.createNamedQuery("usersByGoingPost", User.class)
+					.setParameter("goingPost", goingPost)
+					.getResultList();
+			} finally {
+				em.close();
+			}
 	}
 }

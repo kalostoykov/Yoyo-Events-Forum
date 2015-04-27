@@ -2,6 +2,7 @@ package com.yoyoeventforum.service;
 
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -96,6 +97,27 @@ public class PostsService {
 			em.close();
 		}
 	}
+	
+	public Set<User> goingPost(long postId, User goingByUser) {
+		EntityManager em = emf.createEntityManager();
+			final EntityTransaction tx = em.getTransaction();
+			try {
+				tx.begin();
+				final Post fromDb = em.find(Post.class, postId);
+				if (fromDb != null) {
+					fromDb.getGoingByUsers().add(goingByUser);
+					em.merge(fromDb);
+				}
+				tx.commit();
+				return fromDb.getGoingByUsers();
+			} finally {
+				if (tx.isActive()) {
+					tx.rollback();
+				}
+				em.close();
+			}
+	}
+	
 	public void deletePost(long postId) {
 		EntityManager em =
 			emf.createEntityManager();

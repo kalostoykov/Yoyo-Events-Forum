@@ -1,9 +1,13 @@
 package com.yoyoeventforum.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlElement;
@@ -14,7 +18,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity(name="Users")
 @NamedQueries({
 	@NamedQuery(name = "userByUsername", 
-		query = "SELECT u from Users u where u.username=:username"),
+			query = "SELECT u from Users u where u.username=:username"),
+	@NamedQuery(name = "usersByGoingPost",
+			query = "SELECT u from Users u where (:goingPost) " + "MEMBER OF u.goingPosts")	
 })
 
 public class User {
@@ -31,6 +37,16 @@ public class User {
 	@Column(nullable=false, length=50, unique=true)
 	private String email;
 	
+	@ManyToMany(mappedBy="goingByUsers")
+	private Set<Post> goingPosts = new HashSet<Post>();
+	
+	@XmlTransient
+	public Set<Post> getGoingPosts() {
+		return goingPosts;
+	}
+	public void setGoingPosts(Set<Post> goingPosts) {
+		this.goingPosts = goingPosts;
+	}
 	public long getId() {
 		return id;
 	}
