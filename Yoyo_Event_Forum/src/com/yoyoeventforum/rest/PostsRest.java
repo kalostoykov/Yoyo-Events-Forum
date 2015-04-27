@@ -11,7 +11,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.SecurityContext;
 
 import com.yoyoeventforum.model.Post;
 import com.yoyoeventforum.model.User;
@@ -24,7 +26,7 @@ public class PostsRest {
 	
 	private final PostsService postsService;
 	private final UsersService usersService;
-	private final String defaultAuthorUsername = "hello";
+	
 
 
 	public PostsRest() {
@@ -58,8 +60,8 @@ public class PostsRest {
 	@Path("/")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Post createPost(Post post) {
-		final User author = usersService.getUserByUsername(defaultAuthorUsername);
+	public Post createPost(@Context SecurityContext security, Post post) {
+		final User author = usersService.getUserByUsername(security.getUserPrincipal().getName());
 		post.setAuthor(author);
 		return postsService.createPost(post);
 	}
@@ -67,8 +69,8 @@ public class PostsRest {
 	@POST
 	@Path("/{postId}/goingbyusers")
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Set<User> goingPost(@PathParam("postId")long postId) {
-		final User goingByUser = usersService.getUserByUsername(defaultAuthorUsername);
+	public Set<User> goingPost(@Context SecurityContext security, @PathParam("postId")long postId) {
+		final User goingByUser = usersService.getUserByUsername(security.getUserPrincipal().getName());
 		return postsService.goingPost(postId, goingByUser);
 	}
 	
