@@ -1,6 +1,5 @@
 package com.yoyoeventforum.model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,6 +44,7 @@ public class User {
 		this.username = username;
 	}
 	
+	//pass must not send
 	@XmlTransient
 	public String getPassword() {
 		return password;

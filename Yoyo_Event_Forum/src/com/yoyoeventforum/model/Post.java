@@ -8,6 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 @XmlRootElement
 @Entity(name="Posts")
@@ -50,6 +51,8 @@ public class Post {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	@XmlTransient
 	public User getAuthor() {
 		return author;
 	}
