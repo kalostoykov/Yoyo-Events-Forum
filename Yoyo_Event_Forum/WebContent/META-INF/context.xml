@@ -1,0 +1,22 @@
+<Context debug="9" reloadable="true">
+
+<Resource name="jdbc/07_SampleRestDb" auth="Container"
+	type="javax.sql.DataSource"
+	username="app"
+	password="app"
+	maxActive="100"
+	maxIdle="20"
+	testOnBorrow="true"
+	driverClassName="org.apache.derby.jdbc.ClientDriver"
+	url="jdbc:derby://localhost:1527/07_SampleRest;create=true"/>
+  
+	<Realm className="org.apache.catalina.realm.DataSourceRealm"
+	  dataSourceName="jdbc/07_SampleRestDb"
+		userTable="Users"
+		userNameCol="email"
+		userCredCol="password"
+		localDataSource="true"
+		userRoleTable="Users" 
+		roleNameCol="email" /> 
+		
+</Context>
