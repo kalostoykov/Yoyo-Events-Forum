@@ -71,10 +71,13 @@
 			postType = radioButtonMeeting.val();
 		}
 		
+		debugger;
 		$.ajax({
 			type : 'POST',
 			contentType : 'application/json',
 			url : host + 'posts',
+			dataType : "json",
+
 			data : {
 //				"author": "Kaloyan",
 				"type": postType,

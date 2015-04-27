@@ -16,48 +16,49 @@ import com.yoyoeventforum.model.Post;
 import com.yoyoeventforum.model.User;
 import com.yoyoeventforum.service.PostsService;
 import com.yoyoeventforum.service.Services;
+import com.yoyoeventforum.service.UsersService;
 
 @Path("posts")
 public class PostsRest {
-	private final PostsService postsService;
-	private final User defaultAuthor;
 	
+	private final PostsService postsService;
+	private final UsersService usersService;
+	private final String defaultAuthorUsername = "hello";
+
+
 	public PostsRest() {
 		postsService = Services.getPostsService();
-		
-		defaultAuthor = new User();
-		defaultAuthor.setUsername("yoyoforumadmin");
-		defaultAuthor.setEmail("yoyoforum@event");
-		defaultAuthor.setPassword("password");
+		usersService = Services.getUsersService();
 	}
-	
+
 	@GET
 	@Path("/")
-	@Produces({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public List<Post> getPosts() {
 		return postsService.getPosts();
 	}
 	
 	@GET
 	@Path("/{postId}")
-	@Produces({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Post getPost(@PathParam("postId") long postId) {
 		return postsService.getPost(postId);
 	}
-	
 	@POST
 	@Path("/")
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Post createPost(Post post) {
+		final User author = usersService.getUserByUsername(defaultAuthorUsername);
+		post.setAuthor(author);
 		return postsService.createPost(post);
 	}
-	
 	@PUT
 	@Path("/{postId}")
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.APPLICATION_JSON})
-	public Post updatePost(@PathParam("postId") long postId, Post post) {
+	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public Post updatePost(@PathParam("postId") long postId,
+		Post post) {
 		return postsService.updatePost(postId, post);
 	}
 	
@@ -66,5 +67,4 @@ public class PostsRest {
 	public void deletePost(@PathParam("postId") long postId) {
 		postsService.deletePost(postId);
 	}
-	
 }

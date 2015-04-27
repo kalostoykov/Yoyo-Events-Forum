@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="Yoyo_Event_Forum">
+		<class>com.yoyoeventforum.model.Post</class>
+		<class>com.yoyoeventforum.model.User</class>
+		<exclude-unlisted-classes></exclude-unlisted-classes>
+		<properties>
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="javax.persistence.jdbc.user" value="user" />
+			<property name="javax.persistence.jdbc.password" value="123" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/Yoyo_Event_Forum;create=true" />
+			<property name="hibernate.connection.autocommit" value="false"/>
+		</properties>
+	</persistence-unit>
+</persistence>

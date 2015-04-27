@@ -1,16 +1,49 @@
 package com.yoyoeventforum.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
+@Entity(name="Posts")
+@NamedQueries({
+	@NamedQuery(name = "allPosts", 
+		query = "SELECT p from Posts p"),
+	@NamedQuery(name = "postsByAuthor", 
+		query = "SELECT p from Posts p where p.author=:author")
+})
 public class Post {
 	
+	@Id
+	@GeneratedValue
 	private long id;
-	private User author;
-	private String type;
-	private String title;
-	private String place;
-	private String date;
-	private String time;
-	private String description;
 	
+	@ManyToOne(optional=false)
+	private User author;
+	
+	@Column(nullable=false, length=50)
+	private String type;
+	
+	@Column(nullable=false, length=50)
+	private String title;
+	
+	@Column(nullable=false, length=50)
+	private String place;
+	
+	@Column(nullable=false, length=50)
+	private String date;
+	
+	@Column(nullable=false, length=50)
+	private String time;
+	
+	@Column(nullable=false, length=500)
+	private String description;
+
 	public long getId() {
 		return id;
 	}
