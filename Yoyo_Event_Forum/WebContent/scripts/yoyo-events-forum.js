@@ -25,7 +25,6 @@
 	var tournamentsList = $("#tournamentsList");
 	
 	
-	displayPost();
 	// Create Account
 	createAccButton.click(function(event) {
 		event.preventDefault();
@@ -71,7 +70,6 @@
 			postType = radioButtonMeeting.val();
 		}
 		
-		debugger;
 		$.ajax({
 			type : 'POST',
 			contentType : 'application/json',
